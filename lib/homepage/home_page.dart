@@ -27,6 +27,12 @@ class _HomePage extends State<HomePage> {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -70,6 +76,8 @@ class _HomePage extends State<HomePage> {
                                         setState(() {
                                           _answer = "Jawaban anda benar!!!";
                                           soal1 = true;
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
                                         });
                                       } else {
                                         setState(() {
