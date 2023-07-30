@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz/seconda_page/second_page.dart';
 
-// bool pass = true;
+bool soal1 = false;
 
 // class HomePage untuk file main.dart bersifat statefull
 class HomePage extends StatefulWidget {
@@ -32,10 +32,10 @@ class _HomePage extends State<HomePage> {
         title: Text("Soal Nomor: ${widget.page}"),
         centerTitle: true,
       ),
-      body: Column(
+      body: ListView(
         children: [
           SizedBox(
-            height: 500,
+            height: MediaQuery.of(context).size.height * 0.5,
             child: PageView(
               controller: controller,
               scrollDirection: Axis.horizontal,
@@ -68,6 +68,7 @@ class _HomePage extends State<HomePage> {
                                       } else if (value == "15") {
                                         setState(() {
                                           _answer = "Jawaban anda benar!!!";
+                                          soal1 = true;
                                         });
                                       } else {
                                         setState(() {
@@ -106,21 +107,42 @@ class _HomePage extends State<HomePage> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(10),
                           child:
                               Text("Angka awal ditambah angka akhir. Merdeka!"),
                         ),
-                        Image.network(
-                          'https://png.pngtree.com/png-vector/20230414/ourlarge/pngtree-hut-ri-78-official-logo-in-2023-vector-png-image_6704672.png',
-                          fit: BoxFit.cover,
-                          width: 300,
-                          height: 300,
-                        ),
+                        Image(
+                            image: AssetImage('assets/images/hut_ri_78.png'),
+                            fit: BoxFit.contain,
+                            width: MediaQuery.of(context).size.width * 0.9),
                       ]),
                 ),
               ],
             ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(right: 5.0),
+            child: soal1
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                        FloatingActionButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      SecondPage(sebelumnya: soal1)),
+                            );
+                          },
+                          backgroundColor:
+                              const Color.fromARGB(255, 0, 106, 255),
+                          child: const Icon(Icons.open_in_new,
+                              color: Color.fromARGB(255, 255, 255, 255)),
+                        ),
+                      ])
+                : null, // This trailing comma makes auto-formatting nicer for build methods.,
           ),
         ],
       ),
