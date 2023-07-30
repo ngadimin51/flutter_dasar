@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz/seconda_page/second_page.dart';
+import 'package:quiz/second_page/second_page.dart';
 
 bool soal1 = false;
 
@@ -45,17 +45,17 @@ class _HomePage extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       child: Text(
-                        "$_answer",
+                        _answer,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 30,
                         ),
                       ),
                     ),
                     Padding(
-                        padding: EdgeInsets.all(20),
+                        padding: const EdgeInsets.all(20),
                         child: Form(
                             key: _formKey,
                             child: Column(
@@ -105,27 +105,27 @@ class _HomePage extends State<HomePage> {
                                 ])))
                   ],
                 ),
-                SizedBox(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(10),
-                          child:
-                              Text("Angka awal ditambah angka akhir. Merdeka!"),
-                        ),
-                        Image(
-                            image: AssetImage('assets/images/hut_ri_78.png'),
-                            fit: BoxFit.contain,
-                            width: MediaQuery.of(context).size.width * 0.9),
-                      ]),
-                ),
+                ListView(children: [
+                  const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(
+                        child:
+                            Text("Angka awal ditambah angka akhir. Merdeka!")),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Image(
+                        image: const AssetImage('assets/images/hut_ri_78.png'),
+                        fit: BoxFit.contain,
+                        width: MediaQuery.of(context).size.width * 0.9),
+                  ),
+                ]),
               ],
             ),
           ),
           Container(
             padding: const EdgeInsets.only(right: 5.0),
-            child: soal1
+            child: soal1 && _index == 0
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -150,12 +150,12 @@ class _HomePage extends State<HomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.warning),
             label: "Task",
           ),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
             icon: Icon(Icons.question_answer),
             label: "Help",
           ),

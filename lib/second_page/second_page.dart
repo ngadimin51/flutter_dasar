@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/third_page/third_page.dart';
 
 bool soal2 = false;
+
+var finalGambar = [
+  {"path": "assets/images/berenang.webp", "benar": false},
+  {"path": "assets/images/pasar.jpg", "benar": false},
+  {"path": "assets/images/upacara.jpg", "benar": true},
+  {"path": "assets/images/perang.webp", "benar": false},
+];
 
 class SecondPage extends StatefulWidget {
   final bool sebelumnya;
@@ -35,7 +43,7 @@ class _SecondPage extends State<SecondPage> {
                     children: soal2
                         ? [
                             Padding(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.pop(context);
@@ -47,7 +55,7 @@ class _SecondPage extends State<SecondPage> {
                           ]
                         : [
                             Padding(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.pop(context);
@@ -58,7 +66,7 @@ class _SecondPage extends State<SecondPage> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.pop(context);
@@ -68,7 +76,7 @@ class _SecondPage extends State<SecondPage> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -82,7 +90,7 @@ class _SecondPage extends State<SecondPage> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: GestureDetector(
                                 onTap: () {
                                   Navigator.pop(context);
@@ -92,6 +100,26 @@ class _SecondPage extends State<SecondPage> {
                               ),
                             ),
                           ])),
+            SizedBox(
+              child: soal2
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: FloatingActionButton(
+                        backgroundColor: const Color.fromARGB(255, 0, 106, 255),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ThirdPage(sebelumnya: soal2, page: 3)),
+                          );
+                        },
+                        child:
+                            const Icon(Icons.open_in_new, color: Colors.white),
+                      ),
+                    )
+                  : null,
+            )
           ],
         ));
   }
