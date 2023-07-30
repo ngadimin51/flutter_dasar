@@ -15,7 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   // Untuk pageview
   var _index = 0;
-  var _answer = "Isilah form dibawah ini";
+  var _answer =
+      soal1 ? "Anda sudah mengerjakan soal ini" : "Isilah form dibawah ini";
   final _formKey = GlobalKey<FormState>();
   late PageController controller;
 
@@ -35,7 +36,7 @@ class _HomePage extends State<HomePage> {
       body: ListView(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.6,
             child: PageView(
               controller: controller,
               scrollDirection: Axis.horizontal,
@@ -77,6 +78,7 @@ class _HomePage extends State<HomePage> {
                                       }
                                       return null;
                                     },
+                                    initialValue: soal1 ? "15" : "",
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -133,7 +135,7 @@ class _HomePage extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      SecondPage(sebelumnya: soal1)),
+                                      SecondPage(sebelumnya: soal1, page: 2)),
                             );
                           },
                           backgroundColor:
